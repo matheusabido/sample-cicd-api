@@ -12,7 +12,9 @@ pipeline {
         }
         stage('Build') {
             steps {
-                docker.build("cicd-api:latest")
+                script {
+                    docker.build("cicd-api:latest")
+                }
             }
         }
         stage('Deploy') {
