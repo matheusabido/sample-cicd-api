@@ -23,8 +23,8 @@ pipeline {
                     sshPublisher(publishers:
                     [sshPublisherDesc(configName: 'local-ssh-server',
                         transfers: [sshTransfer(
-                            execCommand: 'docker pull cicd-api:latest && docker run cicd-api:latest -d',
-                            execTimeout: 3600,
+                            execCommand: 'docker run cicd-api:latest -d',
+                            execTimeout: 300000,
                         )],
                         verbose: true
                     )])

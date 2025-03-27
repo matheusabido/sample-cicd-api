@@ -6,7 +6,7 @@ RUN mkdir -p /var/run/sshd
 
 RUN echo 'root:admin' | chpasswd
 
-RUN apt-get install -y ca-certificates curl lsb-release sudo
+RUN apt-get update && apt-get install -y ca-certificates curl lsb-release sudo
 RUN apt-get update && curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
 
 # For testing purposes
