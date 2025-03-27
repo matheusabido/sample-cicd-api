@@ -13,7 +13,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    docker.build("cicd-api:latest")
+                    docker.build("cicd-api:latest", "--no-cache .")
                 }
             }
         }
