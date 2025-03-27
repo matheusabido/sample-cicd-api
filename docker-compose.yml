@@ -1,0 +1,21 @@
+services:
+  ssh:
+    container_name: sample-cicd-api-ssh
+    image: local-ssh-server
+    privileged: true
+    ports:
+      - 22:22
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  jenkins:
+    container_name: sample-cicd-api-jenkins
+    image: jenkins/jenkins
+    privileged: true
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+      - jenkins_vol:/var/jenkins_home
+
+volumes:
+  jenkins_vol:

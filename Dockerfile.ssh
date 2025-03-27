@@ -1,0 +1,18 @@
+FROM ubuntu:24.04
+
+RUN apt-get update && apt-get install -y openssh-server
+
+RUN mkdir -p /var/run/sshd
+
+RUN echo 'root:admin' | chpasswd
+
+# For testing purposes
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -i 's/#PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+
+RUN apt-get install -y ca-certificates curl lsb-release sudo
+RUN apt-get update && curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
+
+EXPOSE 22
+
+CMD ["/usr/sbin/sshd", "-D"]
